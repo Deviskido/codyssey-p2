@@ -1,0 +1,55 @@
+{
+  "quizzes": [
+    {
+      "question": "Python의 창시자는 누구인가요?",
+      "choices": [
+        "귀도 반 로섬",
+        "리누스 토르발스",
+        "제임스 고슬링",
+        "데니스 리치"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "다음 중 변경할 수 있는(mutable) 자료형은 무엇인가요?",
+      "choices": [
+        "tuple",
+        "str",
+        "list",
+        "int"
+      ],
+      "answer": 3
+    },
+    {
+      "question": "함수가 값을 돌려줄 때 사용하는 키워드는 무엇인가요?",
+      "choices": [
+        "yield",
+        "return",
+        "break",
+        "import"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "딕셔너리 리터럴을 만들 때 사용하는 괄호는 무엇인가요?",
+      "choices": [
+        "소괄호 ()",
+        "대괄호 []",
+        "중괄호 {}",
+        "꺾쇠괄호 <>"
+      ],
+      "answer": 3
+    },
+    {
+      "question": "예외를 처리할 때 함께 사용하는 키워드 조합은 무엇인가요?",
+      "choices": [
+        "if / else",
+        "for / while",
+        "try / except",
+        "def / return"
+      ],
+      "answer": 3
+    }
+  ],
+  "best_score": null
+}
