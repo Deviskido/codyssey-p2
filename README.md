@@ -86,4 +86,17 @@ codyssey-p2/
 
 과제의 Git 이력 조건은 완성된 코드를 한 번에 커밋하는 것으로 충족되지 않습니다. 메뉴, 클래스, 플레이, 추가, 목록, 점수, 저장, 문서처럼 실제 작업 단위에 따라 의미 있는 커밋을 만들고, 퀴즈 풀기 기능은 별도 브랜치에서 작업한 후 `main`에 병합해야 합니다. 개발 완료 후 별도 디렉터리에 저장소를 `clone`하고, 간단한 문서 변경을 `push`한 뒤 기존 디렉터리에서 `pull`하여 반영 여부를 확인합니다.
 
+
+
+## 재현 명령
+
+```bash
+python3 main.py
+python3 -m unittest discover -s tests -v
+git log --graph --decorate --oneline --all
+git reflog --date=iso --all
+git status
+```
+
+
 한줄추가합니다!!!
