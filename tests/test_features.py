@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from main import Quiz, QuizGame, QuizSearch
+from main import Quiz, QuizGame, QuizSearch, ScoreCalculator
 
 
 class QuizSearchTests(unittest.TestCase):
@@ -34,6 +34,25 @@ class QuizSearchTests(unittest.TestCase):
                 game = QuizGame(Path(directory) / "state.json")
             game.quizzes = self.quizzes
             self.assertEqual(game.search_quizzes("수도"), [self.quizzes[1]])
+
+
+class ScoreCalculatorTests(unittest.TestCase):
+    def test_calculate_returns_rounded_percentage(self) -> None:
+        self.assertEqual(ScoreCalculator.calculate(0, 5), 0)
+        self.assertEqual(ScoreCalculator.calculate(2, 3), 67)
+        self.assertEqual(ScoreCalculator.calculate(5, 5), 100)
+
+    def test_calculate_rejects_invalid_counts_and_types(self) -> None:
+        invalid_values = (
+            (-1, 5),
+            (6, 5),
+            (0, 0),
+            (True, 5),
+            (1, 2.0),
+        )
+        for correct, total in invalid_values:
+            with self.subTest(correct=correct, total=total), self.assertRaises(ValueError):
+                ScoreCalculator.calculate(correct, total)
 
 
 if __name__ == "__main__":

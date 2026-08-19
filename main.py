@@ -72,6 +72,19 @@ class QuizSearch:
         ]
 
 
+class ScoreCalculator:
+    """정답 수와 전체 문제 수를 백점 기준 점수로 계산한다."""
+
+    @staticmethod
+    def calculate(correct: int, total: int) -> int:
+        values = (correct, total)
+        if any(not isinstance(value, int) or isinstance(value, bool) for value in values):
+            raise ValueError("정답 수와 전체 문제 수는 정수여야 합니다.")
+        if total <= 0 or correct < 0 or correct > total:
+            raise ValueError("정답 수와 전체 문제 수의 범위가 올바르지 않습니다.")
+        return round(correct / total * 100)
+
+
 def create_default_quizzes() -> list[Quiz]:
     """Python 기초를 주제로 직접 작성한 기본 문제를 반환한다."""
     return [
@@ -246,7 +259,7 @@ class QuizGame:
                 print(f"❌ 오답입니다. 정답은 {quiz.answer}번 ({correct_choice})입니다.")
 
         total = len(self.quizzes)
-        score = round(correct / total * 100)
+        score = ScoreCalculator.calculate(correct, total)
         print("\n" + "=" * 40)
         print(f"🏆 결과: {total}문제 중 {correct}문제 정답! ({score}점)")
         is_new_best = self.best_score is None or score > self.best_score["score"]
