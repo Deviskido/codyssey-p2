@@ -15,6 +15,10 @@ class Quiz:
     """문제 하나와 네 개의 선택지, 정답 번호를 표현한다."""
 
     def __init__(self, question: str, choices: list[str], answer: int) -> None:
+        if not isinstance(question, str):
+            raise ValueError("문제는 문자열이어야 합니다.")
+        if not isinstance(choices, list):
+            raise ValueError("선택지는 리스트여야 합니다.")
         question = question.strip()
         choices = [str(choice).strip() for choice in choices]
         if not question:
@@ -105,7 +109,7 @@ class QuizGame:
     def _parse_best_score(value: object) -> dict[str, int] | None:
         if value is None:
             return None
-        if isinstance(value, int) and not isinstance(value, bool) and value >= 0:
+        if isinstance(value, int) and not isinstance(value, bool) and 0 <= value <= 100:
             return {"score": value, "correct": value, "total": 0}
         if not isinstance(value, dict):
             raise ValueError("최고 점수 형식이 올바르지 않습니다.")
@@ -241,10 +245,12 @@ class QuizGame:
         question = self.read_text("문제를 입력하세요: ")
         choices = [self.read_text(f"선택지 {number}: ") for number in range(1, 5)]
         answer = self.read_number("정답 번호 (1-4): ", 1, 4)
-        self.quizzes.append(Quiz(question, choices, answer))
+        quiz = Quiz(question, choices, answer)
+        self.quizzes.append(quiz)
         if self.save_state():
             print("✅ 퀴즈가 추가되고 저장되었습니다!")
         else:
+            self.quizzes.pop()
             print("⚠️ 퀴즈는 현재 실행에 추가되었지만 파일에는 저장되지 않았습니다.")
 
     def list_quizzes(self) -> None:

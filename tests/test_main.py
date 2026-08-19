@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import contextlib
 import io
 import json
@@ -129,6 +131,49 @@ class QuizGameTests(unittest.TestCase):
             with contextlib.redirect_stdout(io.StringIO()):
                 game.run()
             self.assertTrue(path.exists())
+
+    def test_keyboard_interrupt_during_run_saves_and_exits(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+
+            def interrupt(_prompt: str) -> str:
+                raise KeyboardInterrupt
+
+            game = self.make_game(path)
+            game.input = interrupt
+            with contextlib.redirect_stdout(io.StringIO()):
+                game.run()
+            self.assertTrue(path.exists())
+
+    def test_menu_dispatches_actions_and_exits(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            game = self.make_game(Path(directory) / "state.json", ["3", "4", "5"])
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                game.run()
+            text = output.getvalue()
+            self.assertIn("(총 5개)", text)
+            self.assertIn("👋", text)
+
+    def test_add_quiz_rolls_back_when_save_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            game = self.make_game(
+                Path(directory) / "state.json",
+                ["새 문제", "가", "나", "다", "라", "2"],
+            )
+            original_count = len(game.quizzes)
+            game.save_state = lambda: False
+            with contextlib.redirect_stdout(io.StringIO()):
+                game.add_quiz()
+            self.assertEqual(len(game.quizzes), original_count)
+
+    def test_empty_state_is_valid(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            path.write_text('{"quizzes": [], "best_score": null}', encoding="utf-8")
+            game = self.make_game(path)
+            self.assertEqual(game.quizzes, [])
+            self.assertIsNone(game.best_score)
 
 
 if __name__ == "__main__":

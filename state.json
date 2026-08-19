@@ -1,52 +1,52 @@
 {
   "quizzes": [
     {
-      "question": "Python의 창시자는 누구인가요?",
+      "question": "대한민국의 수도는 어디인가요?",
       "choices": [
-        "귀도 반 로섬",
-        "리누스 토르발스",
-        "제임스 고슬링",
-        "데니스 리치"
-      ],
-      "answer": 1
-    },
-    {
-      "question": "다음 중 변경할 수 있는(mutable) 자료형은 무엇인가요?",
-      "choices": [
-        "tuple",
-        "str",
-        "list",
-        "int"
-      ],
-      "answer": 3
-    },
-    {
-      "question": "함수가 값을 돌려줄 때 사용하는 키워드는 무엇인가요?",
-      "choices": [
-        "yield",
-        "return",
-        "break",
-        "import"
+        "부산",
+        "서울",
+        "인천",
+        "대전"
       ],
       "answer": 2
     },
     {
-      "question": "딕셔너리 리터럴을 만들 때 사용하는 괄호는 무엇인가요?",
+      "question": "태양계에서 가장 큰 행성은 무엇인가요?",
       "choices": [
-        "소괄호 ()",
-        "대괄호 []",
-        "중괄호 {}",
-        "꺾쇠괄호 <>"
+        "지구",
+        "화성",
+        "목성",
+        "금성"
       ],
       "answer": 3
     },
     {
-      "question": "예외를 처리할 때 함께 사용하는 키워드 조합은 무엇인가요?",
+      "question": "물의 화학식은 무엇인가요?",
       "choices": [
-        "if / else",
-        "for / while",
-        "try / except",
-        "def / return"
+        "CO2",
+        "O2",
+        "NaCl",
+        "H2O"
+      ],
+      "answer": 4
+    },
+    {
+      "question": "한글을 창제한 왕은 누구인가요?",
+      "choices": [
+        "세종대왕",
+        "태조",
+        "정조",
+        "고종"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "1킬로미터는 몇 미터인가요?",
+      "choices": [
+        "10미터",
+        "100미터",
+        "1000미터",
+        "10000미터"
       ],
       "answer": 3
     }

@@ -40,13 +40,14 @@ python3 -m unittest discover -s tests -v
 
 ```text
 codyssey-p2/
+├── LEARNING_GUIDE.md          # Python, OOP, JSON, Git 개념 가이드
+├── kanban.md                  # 전체 과제 체크리스트
 ├── main.py                    # Quiz, QuizGame 클래스와 실행 진입점
 ├── state.json                 # 실행 중 생성되는 퀴즈 및 점수 데이터
 ├── tests/
 │   └── test_main.py           # 클래스, 저장, 복구, 입력 및 점수 테스트
 ├── .gitignore
-├── README.md
-└── ASSIGNMENT_REQUIREMENTS.md # 과제 요구사항
+└── README.md
 ```
 
 ## 데이터 파일 설명
@@ -80,5 +81,7 @@ codyssey-p2/
 파일이 없으면 기본 데이터로 실행합니다. JSON이 손상되었거나 스키마가 올바르지 않으면 안내 메시지를 출력하고 기본 퀴즈로 복구합니다.
 
 ## Git 실습 안내
+
+코드에 사용된 Python 문법, 객체지향, JSON, Git 개념은 [LEARNING_GUIDE.md](LEARNING_GUIDE.md)에서 실제 예시와 함께 설명합니다.
 
 과제의 Git 이력 조건은 완성된 코드를 한 번에 커밋하는 것으로 충족되지 않습니다. 메뉴, 클래스, 플레이, 추가, 목록, 점수, 저장, 문서처럼 실제 작업 단위에 따라 의미 있는 커밋을 만들고, 퀴즈 풀기 기능은 별도 브랜치에서 작업한 후 `main`에 병합해야 합니다. 개발 완료 후 별도 디렉터리에 저장소를 `clone`하고, 간단한 문서 변경을 `push`한 뒤 기존 디렉터리에서 `pull`하여 반영 여부를 확인합니다.
