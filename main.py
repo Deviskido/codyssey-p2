@@ -85,6 +85,16 @@ class ScoreCalculator:
         return round(correct / total * 100)
 
 
+class QuizCollection:
+    """외부 데이터의 퀴즈 목록을 검증하고 객체 목록으로 변환한다."""
+
+    @staticmethod
+    def from_data(value: object) -> list[Quiz]:
+        if not isinstance(value, list):
+            raise ValueError("퀴즈 목록은 배열이어야 합니다.")
+        return [Quiz.from_dict(item) for item in value]
+
+
 def create_default_quizzes() -> list[Quiz]:
     """Python 기초를 주제로 직접 작성한 기본 문제를 반환한다."""
     return [
@@ -161,9 +171,9 @@ class QuizGame:
         try:
             with self.state_path.open("r", encoding="utf-8") as file:
                 data = json.load(file)
-            if not isinstance(data, dict) or not isinstance(data.get("quizzes"), list):
+            if not isinstance(data, dict) or "quizzes" not in data:
                 raise ValueError("필수 데이터가 없습니다.")
-            self.quizzes = [Quiz.from_dict(item) for item in data["quizzes"]]
+            self.quizzes = QuizCollection.from_data(data["quizzes"])
             self.best_score = self._parse_best_score(data.get("best_score"))
             score_text = self.best_score["score"] if self.best_score else "기록 없음"
             print(
