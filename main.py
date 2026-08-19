@@ -56,6 +56,22 @@ class Quiz:
         return cls(data["question"], data["choices"], data["answer"])
 
 
+class QuizSearch:
+    """문제와 선택지에서 키워드가 포함된 퀴즈를 찾는다."""
+
+    @staticmethod
+    def find(quizzes: list[Quiz], keyword: str) -> list[Quiz]:
+        normalized = keyword.strip().casefold()
+        if not normalized:
+            return []
+        return [
+            quiz
+            for quiz in quizzes
+            if normalized in quiz.question.casefold()
+            or any(normalized in choice.casefold() for choice in quiz.choices)
+        ]
+
+
 def create_default_quizzes() -> list[Quiz]:
     """Python 기초를 주제로 직접 작성한 기본 문제를 반환한다."""
     return [
@@ -262,6 +278,10 @@ class QuizGame:
         for number, quiz in enumerate(self.quizzes, start=1):
             print(f"[{number}] {quiz.question}")
         print("-" * 40)
+
+    def search_quizzes(self, keyword: str) -> list[Quiz]:
+        """현재 등록된 문제와 선택지에서 키워드를 검색한다."""
+        return QuizSearch.find(self.quizzes, keyword)
 
     def show_best_score(self) -> None:
         if self.best_score is None:
