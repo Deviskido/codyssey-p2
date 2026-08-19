@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from main import Quiz, QuizGame, QuizSearch, ScoreCalculator
+from main import Quiz, QuizCollection, QuizGame, QuizSearch, ScoreCalculator
 
 
 class QuizSearchTests(unittest.TestCase):
@@ -53,6 +53,27 @@ class ScoreCalculatorTests(unittest.TestCase):
         for correct, total in invalid_values:
             with self.subTest(correct=correct, total=total), self.assertRaises(ValueError):
                 ScoreCalculator.calculate(correct, total)
+
+
+class QuizCollectionTests(unittest.TestCase):
+    def test_from_data_builds_quiz_objects(self) -> None:
+        data = [
+            {
+                "question": "문제",
+                "choices": ["하나", "둘", "셋", "넷"],
+                "answer": 3,
+            }
+        ]
+        quizzes = QuizCollection.from_data(data)
+        self.assertEqual(len(quizzes), 1)
+        self.assertIsInstance(quizzes[0], Quiz)
+        self.assertEqual(quizzes[0].answer, 3)
+
+    def test_from_data_accepts_empty_list_and_rejects_other_shapes(self) -> None:
+        self.assertEqual(QuizCollection.from_data([]), [])
+        for value in (None, {}, "quizzes", 1):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                QuizCollection.from_data(value)
 
 
 if __name__ == "__main__":
