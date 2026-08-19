@@ -1,0 +1,67 @@
+Git/GitHub evidence collected 2026-08-19 Asia/Seoul
+======================================================
+
+[Remote repository]
+$ git remote get-url origin
+https://github.com/Deviskido/codyssey-p2.git
+
+[Synchronization and clean working tree before evidence files]
+$ git status --short --branch
+## main...origin/main
+
+[Commit count]
+$ git rev-list --count HEAD
+13
+
+[Commit and merge graph]
+$ git log --graph --decorate --oneline --all
+* bf42277 (HEAD -> main, origin/main, origin/HEAD) docs: README 한줄 추가
+*   723abf8 Merge: JSON 상태 변환 기능 병합
+|\
+| * f71ddef (origin/feature/state-parser, feature/state-parser) Test: JSON 퀴즈 목록 변환 검증 추가
+| * a84e0a3 Refactor: JSON 퀴즈 목록 변환 클래스 분리
+|/
+*   68f3305 Merge: 점수 계산 기능 병합
+|\
+| * d698a88 (origin/feature/score-calculator, feature/score-calculator) Test: 점수 계산 경계값 검증 추가
+| * 361cdc1 Refactor: 점수 계산 클래스 분리
+|/
+*   4de0b7e Merge: 퀴즈 검색 기능 병합
+|\
+| * 5c76b5a (origin/feature/quiz-search, feature/quiz-search) Test: 퀴즈 검색 기능 검증 추가
+| * b8a7729 Feat: 퀴즈 키워드 검색 클래스 추가
+|/
+* 9c18d1f tmp
+* fae8766 migration
+* 784c8dc first commit
+
+[Merged branches]
+$ git branch --merged main
+  feature/quiz-search
+  feature/score-calculator
+  feature/state-parser
+* main
+
+[Branch creation, checkout and merge reflog evidence]
+9c18d1f HEAD@{2026-08-19 16:25:06 +0900}: checkout: moving from main to feature/quiz-search
+4de0b7e HEAD@{2026-08-19 16:26:11 +0900}: merge feature/quiz-search: Merge made by the 'ort' strategy.
+4de0b7e HEAD@{2026-08-19 16:26:22 +0900}: checkout: moving from main to feature/score-calculator
+68f3305 HEAD@{2026-08-19 16:28:18 +0900}: merge feature/score-calculator: Merge made by the 'ort' strategy.
+68f3305 HEAD@{2026-08-19 16:28:26 +0900}: checkout: moving from main to feature/state-parser
+723abf8 HEAD@{2026-08-19 16:29:06 +0900}: merge feature/state-parser: Merge made by the 'ort' strategy.
+
+[Push evidence]
+723abf8 refs/remotes/origin/main@{2026-08-19 16:29:24 +0900}: update by push
+5c76b5a refs/remotes/origin/feature/quiz-search@{2026-08-19 16:29:24 +0900}: update by push
+d698a88 refs/remotes/origin/feature/score-calculator@{2026-08-19 16:29:24 +0900}: update by push
+f71ddef refs/remotes/origin/feature/state-parser@{2026-08-19 16:29:24 +0900}: update by push
+
+[Clone evidence]
+fae8766 HEAD@{2026-08-19 12:50:13 +0900}: clone: from https://github.com/Deviskido/codyssey-p2.git
+fae8766 refs/heads/main@{2026-08-19 12:50:13 +0900}: clone: from https://github.com/Deviskido/codyssey-p2.git
+
+[Pull evidence]
+bf42277 HEAD@{2026-08-19 16:39:09 +0900}: pull: Fast-forward
+bf42277 refs/remotes/origin/main@{2026-08-19 16:39:09 +0900}: pull: fast-forward
+
+Note: reflog is local operational evidence and is not transferred by Git push.
